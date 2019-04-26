@@ -1,4 +1,4 @@
-export interface IMember {
+export interface IMemberResponse {
     uuid: string,
     name: string
-  }
+}

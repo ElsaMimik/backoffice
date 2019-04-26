@@ -83,14 +83,24 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import * as model from '@/interfaces/member'
 
 export default Vue.extend({
   name: 'Search',
   props: {
     msg: String,
   },
+  computed: {
+    // ...mapGetters({
+    //   products: 'allProducts'
+    // })
+    members(): model.IMemberResponse[] {
+      return this.$store.getters.memberInfo
+    },
+  },
   mounted() {
-      console.log('start');
+      this.$store.dispatch('getMember');
+      console.log(this.members);
   },
 });
 </script>
