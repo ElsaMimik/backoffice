@@ -1,21 +1,20 @@
 import { IMemberResponse } from '@/interfaces/member'
 import { ActionContextBasic } from '@/store'
 import MemberApi from '@/api/member'
-import { Commit } from 'vuex'
 const initState: State = {
-    memberInfo: []
+    memberInfos: []
 }
 
 
 
 export interface State {
-    memberInfo: IMemberResponse[]
+    memberInfos: IMemberResponse[]
 }
 
 const SEARCH_MEMBER = 'SEARCH_MEMBER'
 
 const getters = {
-    memberInfo: (state: State) => state.memberInfo,
+    memberInfo: (state: State) => state.memberInfos,
 }
 
 const actions = {
@@ -27,7 +26,7 @@ const actions = {
 
 const mutations = {
     [SEARCH_MEMBER](state: State, payload: IMemberResponse[]) {
-        state.memberInfo = payload;
+        state.memberInfos = payload;
     },
 }
 
