@@ -82,20 +82,23 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { mapState } from 'vuex'
-import * as Model from '@/models/interfaces/member'
+import Vue from "vue";
+// import { mapState } from 'vuex'
+import { Component } from "vue-property-decorator";
+import { State, Action, Getter, namespace } from "vuex-class";
+import * as Model from "@/models/interfaces/member";
 
-export default Vue.extend({
-  name: 'Search',
-  props: {
-    msg: String,
-  },
-  computed: {
-     ...mapState('Member', ['memberInfos'])
-  },
-  mounted() {
-      this.$store.dispatch('Member/getMember');
-  },
-});
+const memberModule = namespace('Member')
+
+@Component
+export default class Detail extends Vue {
+
+@Action('Member/getMember') private getMember!: any
+@memberModule.State('memberInfos') members!: Model.IMemberResponse[]
+
+  mounted () {
+    this.getMember();
+    console.log(this.members)
+  }
+}
 </script>

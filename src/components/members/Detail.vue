@@ -19,22 +19,7 @@ export default class Detail extends Vue {
 
   mounted () {
     this.getMember();
-    console.log(this.members)
+    console.log(this.$route.params.uuid);
   }
 }
-
-// export default Vue.extend({
-//   name: 'Detail',
-//   props: {
-//     msg: String,
-//   },
-//   computed: {
-//      ...mapState('Member', ['memberInfos'])
-//   },
-//   mounted() {
-//       this.$store.dispatch('Member/getMember');
-//       console.log(this.$route.params.uuid);
-//   },
-// });
-
 </script>
