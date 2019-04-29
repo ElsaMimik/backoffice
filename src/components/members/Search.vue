@@ -84,7 +84,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { mapState } from 'vuex'
-import * as Model from '@/models/interfaces/member.ts'
+import * as Model from '@/models/interfaces/member'
 
 export default Vue.extend({
   name: 'Search',

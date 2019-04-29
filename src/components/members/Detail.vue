@@ -1,25 +1,40 @@
 <template>
-    <div class="wrap">
-      Member Detail
-    </div>
+  <div class="wrap">Member Detail</div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { mapState } from 'vuex'
-import * as Model from '@/models/interfaces/member.ts'
+import Vue from "vue";
+// import { mapState } from 'vuex'
+import { Component } from "vue-property-decorator";
+import { State, Action, Getter, namespace } from "vuex-class";
+import * as Model from "@/models/interfaces/member";
 
-export default Vue.extend({
-  name: 'Detail',
-  props: {
-    msg: String,
-  },
-  computed: {
-     ...mapState('Member', ['memberInfos'])
-  },
-  mounted() {
-      this.$store.dispatch('Member/getMember');
-      console.log(this.$route.params.uuid);
-  },
-});
+const memberModule = namespace('Member')
+
+@Component
+export default class Detail extends Vue {
+
+@Action('Member/getMember') private getMember!: any
+@memberModule.State('memberInfos') members!: Model.IMemberResponse[]
+
+  mounted () {
+    this.getMember();
+    console.log(this.members)
+  }
+}
+
+// export default Vue.extend({
+//   name: 'Detail',
+//   props: {
+//     msg: String,
+//   },
+//   computed: {
+//      ...mapState('Member', ['memberInfos'])
+//   },
+//   mounted() {
+//       this.$store.dispatch('Member/getMember');
+//       console.log(this.$route.params.uuid);
+//   },
+// });
+
 </script>
