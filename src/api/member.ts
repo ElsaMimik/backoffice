@@ -1,4 +1,4 @@
-import * as Model from '@/interfaces/member'
+import * as Model from '@/model/interfaces/member'
 
 export default {
     getMember(id: string): Model.IMemberResponse {

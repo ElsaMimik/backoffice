@@ -1,4 +1,4 @@
-import { IMemberResponse } from '@/interfaces/member'
+import { IMemberResponse } from '@/model/interfaces/member'
 import { ActionContextBasic } from '@/store'
 import MemberApi from '@/api/member'
 const initState: State = {
