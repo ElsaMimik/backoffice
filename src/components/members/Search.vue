@@ -83,7 +83,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import * as Model from '@/interfaces/member'
+import * as Model from '@/models/interfaces/member.ts'
 
 export default Vue.extend({
   name: 'Search',

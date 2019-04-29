@@ -1,5 +1,5 @@
-import { IMemberResponse } from '@/model/interfaces/member'
-import { ActionContextBasic } from '@/store'
+import { IMemberResponse } from '@/models/interfaces/member'
+import { ActionContextBasic } from '@/store/main'
 import MemberApi from '@/api/member'
 const initState: State = {
     memberInfos: []

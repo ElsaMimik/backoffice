@@ -1,4 +1,4 @@
-import { ActionContextBasic } from '@/store'
+import { ActionContextBasic } from '@/store/main'
 const initState: State = {
 }
 
