@@ -1,26 +1,24 @@
 import { IMemberResponse } from '@/models/interfaces/member'
 import { ActionContextBasic } from '@/store/main'
 import MemberApi from '@/api/member'
-const initState: State = {
-    memberInfos: []
-}
-
-
-
 export interface State {
     memberInfos: IMemberResponse[]
 }
+const SEARCH_MEMBER = 'SEARCH_MEMBER';
 
-const SEARCH_MEMBER = 'SEARCH_MEMBER'
+
+const initState: State = {
+    memberInfos: [],
+}
 
 const getters = {
-    memberInfo: (state: State) => state.memberInfos,
+    getMemberInfo: (state: State) => state.memberInfos,
 }
 
 const actions = {
     getMember(context: ActionContextBasic, uuid: string) {
-        const  data = MemberApi.getMemberList(uuid);
-        context.commit(SEARCH_MEMBER, data)
+        const data = MemberApi.getMemberList(uuid);
+        context.commit(SEARCH_MEMBER, data);
     },
 }
 

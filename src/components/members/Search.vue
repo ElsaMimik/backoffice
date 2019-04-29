@@ -95,7 +95,7 @@ export default Vue.extend({
     //   products: 'allProducts'
     // })
     members(): Model.IMemberResponse[] {
-      return this.$store.getters.memberInfo
+      return this.$store.getters.getMemberInfo;
     },
   },
   mounted() {

@@ -5,11 +5,11 @@ Vue.use(Router)
 const routes = [
   {
     path: '/member',
-    name: 'detail', component: () => import('@/views/members/Search.vue'),
+    name: 'member', component: () => import('@/views/members/Search.vue'),
   },
   {
     path: '/member/detail/:uuid?',
-    name: 'detail', component: () => import('@/views/members/Detail.vue'),
+    name: 'member-detail', component: () => import('@/views/members/Detail.vue'),
   },
   {
     path: '/about',
