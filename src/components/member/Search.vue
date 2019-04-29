@@ -83,7 +83,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import * as model from '@/interfaces/member'
+import * as Model from '@/interfaces/member'
 
 export default Vue.extend({
   name: 'Search',
@@ -94,7 +94,7 @@ export default Vue.extend({
     // ...mapGetters({
     //   products: 'allProducts'
     // })
-    members(): model.IMemberResponse[] {
+    members(): Model.IMemberResponse[] {
       return this.$store.getters.memberInfo
     },
   },

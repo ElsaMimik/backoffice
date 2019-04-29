@@ -1,15 +1,15 @@
-import * as model from '@/interfaces/member'
+import * as Model from '@/interfaces/member'
 
 export default {
-    getMember(id: string): model.IMemberResponse {
-        const data: model.IMemberResponse = { uuid: 'employee_01', name: 'Rourou', };
-        return <model.IMemberResponse>(data);
+    getMember(id: string): Model.IMemberResponse {
+        const data: Model.IMemberResponse = { uuid: 'employee_01', name: 'Rourou', };
+        return <Model.IMemberResponse>(data);
     },
-    getMemberList(id: string): model.IMemberResponse[] {
-        const data: model.IMemberResponse[] = [
+    getMemberList(id: string): Model.IMemberResponse[] {
+        const data: Model.IMemberResponse[] = [
             { uuid: 'employee_01', name: 'Rourou', },
             { uuid: 'employee_02', name: 'Ellen', },
         ];
-        return <model.IMemberResponse[]>(data);
+        return <Model.IMemberResponse[]>(data);
     },
 }
