@@ -5,9 +5,11 @@ Vue.use(Router)
 const routes = [
   {
     path: '/member',
-    name: 'member',
-    // component: Member
-    component: () => import(/* webpackChunkName: "about" */ '@/views/members/Search.vue')
+    name: 'detail', component: () => import('@/views/members/Search.vue'),
+  },
+  {
+    path: '/member/detail/:uuid?',
+    name: 'detail', component: () => import('@/views/members/Detail.vue'),
   },
   {
     path: '/about',
@@ -19,7 +21,7 @@ const routes = [
   }
 ]
 
-let router =  new Router({
+let router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: routes
