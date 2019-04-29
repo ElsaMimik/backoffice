@@ -1,4 +1,4 @@
-import { ActionContextBasic } from '@/store/main'
+import { ActionContextBasic } from '@/store/index'
 const initState: State = {
 }
 
@@ -17,6 +17,7 @@ const mutations = {
 }
 
 export default {
+    namespaced: true,
     state: initState,
     getters,
     actions,

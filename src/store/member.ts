@@ -1,5 +1,5 @@
 import { IMemberResponse } from '@/models/interfaces/member'
-import { ActionContextBasic } from '@/store/main'
+import { ActionContextBasic } from '@/store/index'
 import MemberApi from '@/api/member'
 export interface State {
     memberInfos: IMemberResponse[]
@@ -29,6 +29,7 @@ const mutations = {
 }
 
 export default {
+    namespaced: true,
     state: initState,
     getters,
     actions,

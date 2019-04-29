@@ -83,6 +83,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { mapState } from 'vuex'
 import * as Model from '@/models/interfaces/member.ts'
 
 export default Vue.extend({
@@ -91,16 +92,10 @@ export default Vue.extend({
     msg: String,
   },
   computed: {
-    // ...mapGetters({
-    //   products: 'allProducts'
-    // })
-    members(): Model.IMemberResponse[] {
-      return this.$store.getters.getMemberInfo;
-    },
+     ...mapState('Member', ['memberInfos'])
   },
   mounted() {
-      this.$store.dispatch('getMember');
-      console.log(this.members);
+      this.$store.dispatch('Member/getMember');
   },
 });
 </script>
