@@ -15,7 +15,7 @@ const component = [
         routerName: 'account-transaction'
     },
     {
-        apiPath: 'account/game-bet-record',
+        apiPath: '/account/game-bet-record',
         routerName: 'account-game-bet-record',
     },
     {
