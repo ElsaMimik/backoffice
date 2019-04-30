@@ -17,7 +17,7 @@ class HttpModel {
     let result;
     try {
       let config = {
-        baseURL: successURL,
+        baseURL: failURL,
         headers: {
           'Authorization': `Bearer ${Cookies.get('token')}`,
           'content-type': 'application/x-www-form-urlencoded',

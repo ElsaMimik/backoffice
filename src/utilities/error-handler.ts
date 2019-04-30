@@ -37,10 +37,12 @@ const responseFail = (error: any) => {
             traceId: error,
 
         };
+    console.log(err)
+
     return Promise.resolve(error);
 }
 
-let err: IError =
+export let err: IError =
 {
     code: '',
     message: '',

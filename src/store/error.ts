@@ -6,7 +6,6 @@ export interface State {
 }
 const SET_ERROR = 'SET_ERROR';
 
-
 const initState: State = {
     error: {
         code: '',
@@ -21,6 +20,7 @@ const getters = {
 
 const actions = {
     setError(context: ActionContextBasic, payload: IError) {
+        console.log('setError')
         context.commit(SET_ERROR, payload);
     },
 }
