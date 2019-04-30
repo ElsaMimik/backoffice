@@ -59,8 +59,17 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { getMenu } from '@/router/menu';
+import { checkPageAuth } from '@/router/auth'
 
-export default {}
+export default Vue.extend({
+  mounted() {
+    let apiPaths = ['/member', '/account/modified/abnormal/approval'];
+    // let apiPaths = new Array<string>();
+    const menu = getMenu(apiPaths);
+    console.log(menu);
+  }
+});
 </script>
 
 <style>
