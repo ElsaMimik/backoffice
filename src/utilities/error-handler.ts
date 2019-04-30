@@ -1,4 +1,6 @@
 import * as store from '@/store/error'
+import Vue from 'vue';
+import { mapMutations } from 'vuex';
 import { IError } from '@/models/interfaces/error'
 
 
@@ -22,23 +24,19 @@ const responseFail = (error: any) => {
     let msg = '';
     if (error.response.status === 504 || error.response.status === 404) {
         msg = '服务器被吃了⊙﹏⊙∥';
-        console.log('服务器被吃了⊙﹏⊙∥', error);
     } else if (error.response.status === 403) {
         msg = '权限不足,请联系管理员!';
-        console.log('权限不足,请联系管理员!', error);
     } else {
         msg = '未知错误!';
-        console.log(`${error.response.status} 未知错误!`, error);
     }
     err =
         {
             code: error.response.status,
             message: msg,
-            traceId: error,
+            traceId: error.response.statusText,
 
         };
     console.log(err)
-
     return Promise.resolve(error);
 }
 
