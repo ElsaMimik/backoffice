@@ -58,19 +58,27 @@
 
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
+import { State, Action, Getter, namespace } from "vuex-class";
 import { getMenu } from '@/router/menu';
 import { checkPageAuth } from '@/router/auth'
 
-export default Vue.extend({
-  mounted() {
-    // TODO : apiPaths = call api
-    let apiPaths = ['/member', '/account/modified/abnormal/approval'];
-    // let apiPaths = new Array<string>();
+const memberModule = namespace('Auth')
+
+@Component
+export default class App extends Vue {
+
+@Action('Auth/getApiPath') private getApiPath!: any
+@memberModule.State('apiPaths') apiPaths!: string[]
+
+  mounted () {
+    this.getApiPath();
+    const apiPaths = this.apiPaths;
     const menu = getMenu(apiPaths);
     console.log(menu);
   }
-});
+}
 </script>
 
 <style>

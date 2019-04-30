@@ -40,7 +40,9 @@ router.beforeEach((to, from, next) => {
   }
   if (checkPageAuth(to.name, apiPaths)) {
     next();
-  } else { window.location.href = 'http://www.google.com'; }
+  } else {
+    // window.location.href = 'http://www.google.com';
+  }
 });
 
 export default router
