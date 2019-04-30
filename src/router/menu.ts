@@ -89,7 +89,7 @@ export let menuPaths =
 
 let paths = new Array<string>();
 
-async function spiltPath(apiPaths: Array<string>) {
+const spiltPath = async function (apiPaths: Array<string>) {
     await apiPaths.forEach(apiPath => {
         // 拆解路徑字串
         const array = apiPath.split("/");
@@ -115,7 +115,7 @@ async function spiltPath(apiPaths: Array<string>) {
     paths = apiPaths;
 }
 
-async function getMenu(paths: Array<string>) {
+const getMenu = async function (paths: Array<string>) {
     spiltPath(paths).then(async () => {
         // 將需要的頁面 isShow = true
         await paths.forEach(apiPath => {
@@ -146,5 +146,5 @@ async function getMenu(paths: Array<string>) {
     });
     return menuPaths;
 }
-    
+
 export { spiltPath, getMenu };

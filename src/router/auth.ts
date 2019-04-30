@@ -115,7 +115,7 @@ const component = [
 ]
 
 // router.beforeEach 檢查
-async function checkPageAuth(to: any, apiPaths: Array<string>) {
+const checkPageAuth = async function (to: any, apiPaths: Array<string>) {
     let isAuth = false;
     await spiltPath(apiPaths).then(() => {
         const componentInfo = component.find(s => s.routerName === to);
