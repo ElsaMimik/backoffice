@@ -39,7 +39,7 @@ router.beforeEach((to, from, next) => {
     apiPaths = router.app.$options.store.state.Auth.apiPaths;
   }
   checkPageAuth(to.name, apiPaths).then(res => {
-    console.log(res);
+    // console.log('是否有權限', res);
     if (res) {
       next();
     } else {
