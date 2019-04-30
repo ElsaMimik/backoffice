@@ -17,59 +17,24 @@ class HttpModel {
     let result;
     try {
       let config = {
-        baseURL: failURL,
-        // timeout: 1000,
-        // headers: { 'X-Custom-Header': 'foobar' }
+        baseURL: successURL,
         headers: {
-          'Authorization': `Bearer ${Cookies.get('token')}`,
+          'Authorization': `Bearer ${ Cookies.get('token') }`,
           'content-type': 'application/x-www-form-urlencoded',
         }
       };
       let instance = axios.create();
-      // http request 拦截器
       instance.interceptors.request.use(
-        config => {
-          console.log('request success');
-          // 从本地存储获取token
-          var token = window.localStorage.token
-          if (token) {
-            config.headers.Authorization = `token ${token}`;
-          }
-          return config;
-        },
-        err => {
-          console.log('request error');
-          return Promise.reject(err);
-        });
-
-      // http response 拦截器
+        config => requestSuccess(config),
+        err => requestFail(err));
       instance.interceptors.response.use(
-        response => {
-          console.log('response success');
-          return response;
-        },
-        error => {
-          console.log('response error');
-          if (error.response) {
-          }
-          return Promise.reject(error.response.data)
-        });
-
-       // instance.interceptors.request.use(
-      //   (config): any => { requestSuccess(config); },
-      //   (err): any => { requestFail(err) });
-
-      // instance.interceptors.response.use(
-      //   (response): any => { responseSuccess(response); },
-      //   (responseFail): any => { requestFail(responseFail) });
-        result = await instance.request(config);
-      //.request(config);
+        response => responseSuccess(response),
+        error => responseFail(error));
+      result = await instance.request(config);
     }
     catch (err) {
       console.log(err);
     }
-    console.log(result);
-    // let result: AxiosResponse = await axios.get(failURL);
     return result;
   }
 }
