@@ -21,6 +21,12 @@ const routes = [
   }
 ]
 
+const roleString = ['/member', '/account/transaction']
+const menuString = [
+  {name: '查詢會員相關資料', realPath: ['/member', '/member/detail'], apiPath: '/member'},
+  {name: '查詢交易', realPath: ['/account/transaction'], apiPath: '/account/transaction'}
+]
+
 let router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -28,6 +34,7 @@ let router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
+  console.log(to)
   // TODO : check menu auth
   next();
 });
