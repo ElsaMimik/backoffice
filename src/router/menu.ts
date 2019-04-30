@@ -89,9 +89,9 @@ export let menuPaths =
 
 let paths = new Array<string>();
 
-const spiltPath = (apiPaths: Array<string>) => {
-    // 拆解路徑字串
-    for (const apiPath of apiPaths) {
+async function spiltPath(apiPaths: Array<string>) {
+    await apiPaths.forEach(apiPath => {
+        // 拆解路徑字串
         const array = apiPath.split("/");
         if (array.length > 4) {
             const newPath = `/${array[1]}/${array[2]}/${array[3]}`;
@@ -111,39 +111,40 @@ const spiltPath = (apiPaths: Array<string>) => {
                 apiPaths.push(newPath);
             }
         }
-    }
+    });
     paths = apiPaths;
 }
 
-const getMenu = (paths: Array<string>) => {
-    spiltPath(paths);
-    // 將需要的頁面 isShow = true
-    for (const apiPath of paths) {
-        for (const menuPath of menuPaths) {
-            if (apiPath === menuPath.apiPath) {
-                menuPath.isShow = true;
-            }
-            // level 2
-            for (const level_02 of menuPath.children) {
-                if (apiPath === level_02.apiPath) {
-                    level_02.isShow = true;
+async function getMenu(paths: Array<string>) {
+    spiltPath(paths).then(async () => {
+        // 將需要的頁面 isShow = true
+        await paths.forEach(apiPath => {
+            for (const menuPath of menuPaths) {
+                if (apiPath === menuPath.apiPath) {
+                    menuPath.isShow = true;
                 }
-                // level 3
-                for (const level_03 of level_02.children) {
-                    if (apiPath === level_03.apiPath) {
-                        level_03.isShow = true;
+                // level 2
+                for (const level_02 of menuPath.children) {
+                    if (apiPath === level_02.apiPath) {
+                        level_02.isShow = true;
                     }
-                    // level 4
-                    for (const level_04 of level_03.children) {
-                        if (apiPath === level_04.apiPath) {
-                            level_04.isShow = true;
+                    // level 3
+                    for (const level_03 of level_02.children) {
+                        if (apiPath === level_03.apiPath) {
+                            level_03.isShow = true;
+                        }
+                        // level 4
+                        for (const level_04 of level_03.children) {
+                            if (apiPath === level_04.apiPath) {
+                                level_04.isShow = true;
+                            }
                         }
                     }
                 }
             }
-        }
-    }
+        });
+    });
     return menuPaths;
 }
-
+    
 export { spiltPath, getMenu };

@@ -38,11 +38,14 @@ router.beforeEach((to, from, next) => {
     router.app.$options.store.dispatch('Auth/getApiPath');
     apiPaths = router.app.$options.store.state.Auth.apiPaths;
   }
-  if (checkPageAuth(to.name, apiPaths)) {
-    next();
-  } else {
-    // window.location.href = 'http://www.google.com';
-  }
+  checkPageAuth(to.name, apiPaths).then(res => {
+    console.log(res);
+    if (res) {
+      next();
+    } else {
+      // window.location.href = 'http://www.google.com';
+    }
+  })
 });
 
 export default router

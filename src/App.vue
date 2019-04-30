@@ -1,29 +1,33 @@
 <template>
-  <div id="app">
-    <div class="sidebar">
+<div id="app">
+  <div class="sidebar">
     <div class="sidebar__btn">〉</div>
     <div class="sidebar__logo"></div>
     <ul class="sidebar__list">
       <li class="level01">会员</li>
-      <li class="level01">帐务
+      <li class="level01">
+        帐务
         <ul>
           <li class="level02">交易</li>
           <li class="level02">抄單</li>
-          <li class="level02">人工充值
-            <ul> 
+          <li class="level02">
+            人工充值
+            <ul>
               <li class="level03">充值申請</li>
               <li class="level03">充值審核</li>
             </ul>
           </li>
-          <li class="level02">人工提現
-            <ul> 
+          <li class="level02">
+            人工提現
+            <ul>
               <li class="level03">新增提現</li>
               <li class="level03">提現審核</li>
               <li class="level03">出帳作業</li>
             </ul>
           </li>
-          <li class="level02">調帳
-            <ul> 
+          <li class="level02">
+            調帳
+            <ul>
               <li class="level03">注單異常調帳</li>
               <li class="level03">申請</li>
               <li class="level03">審核</li>
@@ -44,16 +48,23 @@
     <meta http-equiv="X-UA-Compatible" content="edge,chrome=1">
     <title>User</title>
     <meta name="description">
-    <meta name="viewport" content="width=375" minimum-scale="1.0," maximum-scale="1.0," user-scalable="no">
+    <meta
+      name="viewport"
+      content="width=375"
+      minimum-scale="1.0,"
+      maximum-scale="1.0,"
+      user-scalable="no"
+    >
     <link rel="stylesheet" href="css/theme.css">
   </head>
   <body>
-    <header class="header"> 
-      <p>CS_0001</p><span>登出</span>
+    <header class="header">
+      <p>CS_0001</p>
+      <span>登出</span>
     </header>
-    <router-view />
+    <router-view/>
   </body>
-  </div>
+</div>
 </template>
 
 
@@ -61,35 +72,36 @@
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import { State, Action, Getter, namespace } from "vuex-class";
-import { getMenu } from '@/router/menu';
-import { checkPageAuth } from '@/router/auth'
+import { getMenu } from "@/router/menu";
+import { checkPageAuth } from "@/router/auth";
 
-const memberModule = namespace('Auth')
+const memberModule = namespace("Auth");
 
 @Component
 export default class App extends Vue {
+  @Action("Auth/getApiPath") private getApiPath!: any;
+  @memberModule.State("apiPaths") apiPaths!: string[];
 
-@Action('Auth/getApiPath') private getApiPath!: any
-@memberModule.State('apiPaths') apiPaths!: string[]
-
-  mounted () {
+  mounted() {
     this.getApiPath();
     const apiPaths = this.apiPaths;
-    const menu = getMenu(apiPaths);
-    console.log('menu', menu);
+    const menu = getMenu(apiPaths).then(menu => { console.log("menu", menu); });
   }
 }
 </script>
 
 <style>
 body {
-  font: 13px/1.231 arial,helvetica,clean,sans-serif;
+  font: 13px/1.231 arial, helvetica, clean, sans-serif;
   *font-size: small;
   *font: x-small;
 }
 
-select, input, textarea, button {
-  font: 99% arial,helvetica,clean,sans-serif;
+select,
+input,
+textarea,
+button {
+  font: 99% arial, helvetica, clean, sans-serif;
 }
 
 table {
@@ -97,7 +109,11 @@ table {
   font: 100%;
 }
 
-pre, code, kbd, samp, tt {
+pre,
+code,
+kbd,
+samp,
+tt {
   font-family: monospace;
   *font-size: 108%;
   line-height: 100%;
@@ -105,10 +121,36 @@ pre, code, kbd, samp, tt {
 
 html {
   color: #000;
-  background: #FFF;
+  background: #fff;
 }
 
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, select, p, blockquote, th, td {
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+select,
+p,
+blockquote,
+th,
+td {
   margin: 0;
   padding: 0;
 }
@@ -118,15 +160,31 @@ table {
   border-spacing: 0;
 }
 
-fieldset, img {
+fieldset,
+img {
   border: 0;
 }
 
-address, button, caption, cite, code, dfn, em, input, optgroup, option, select, strong, textarea, th, var {
+address,
+button,
+caption,
+cite,
+code,
+dfn,
+em,
+input,
+optgroup,
+option,
+select,
+strong,
+textarea,
+th,
+var {
   font: inherit;
 }
 
-del, ins {
+del,
+ins {
   text-decoration: none;
 }
 
@@ -134,20 +192,28 @@ li {
   list-style: none;
 }
 
-caption, th {
+caption,
+th {
   text-align: left;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-size: 100%;
   font-weight: normal;
 }
 
-q:before, q:after {
-  content: '';
+q:before,
+q:after {
+  content: "";
 }
 
-abbr, acronym {
+abbr,
+acronym {
   border: 0;
   font-variant: normal;
 }
@@ -164,19 +230,87 @@ legend {
   color: #000;
 }
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -185,8 +319,17 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
   display: block;
 }
 
@@ -194,17 +337,21 @@ body {
   line-height: 1;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
   content: none;
 }
 
@@ -227,7 +374,8 @@ input {
   margin: 0;
 }
 
-html, body {
+html,
+body {
   margin: 0 auto;
   height: 100%;
 }
@@ -299,7 +447,7 @@ header p {
 }
 
 .sidebar ul.sidebar__list li.level01 {
-  background-color: #4A5325;
+  background-color: #4a5325;
   border-radius: 1px;
   line-height: 380%;
   border-top: 1px solid #95a74a;
@@ -317,7 +465,7 @@ header p {
 }
 
 .sidebar ul.sidebar__list li.level01 ul .level02 {
-  background-color: #5C682E;
+  background-color: #5c682e;
   border-radius: 1px;
   line-height: 380%;
   border-top: 1px solid #95a74a;
@@ -334,7 +482,7 @@ header p {
 }
 
 .sidebar ul.sidebar__list li.level01 ul .level02 ul li.level03 {
-  background-color: #7A883D;
+  background-color: #7a883d;
   border-radius: 1px;
   line-height: 380%;
   height: 60px;
