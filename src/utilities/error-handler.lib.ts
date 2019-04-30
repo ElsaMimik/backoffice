@@ -1,4 +1,5 @@
 import { IError } from '@/models/interfaces/error'
+import EventBus from '@/utilities/event-bus'
 
 const requestSuccess = (config: any) => {
     console.log('request success');
@@ -19,7 +20,7 @@ const responseSuccess = (response: any) => {
 /**
  * axios error handler
  * @author rourou
- * @description 暫時存在localStorage
+ * @description EventBus通知component
  */
 const responseFail = (error: any) => {
     let msg = '';
@@ -37,7 +38,8 @@ const responseFail = (error: any) => {
             traceId: error.response.statusText,
 
         };
-    localStorage.setItem('ErrorLog', JSON.stringify(err));
+    // localStorage.setItem('ErrorLog', JSON.stringify(err));
+    EventBus.$emit('api-error', err);
     return Promise.resolve(error);
 }
 
