@@ -22,6 +22,7 @@ class HttpModel {
 
   async callDoApi<T>(config: AxiosRequestConfig): Promise<T|IError> {
     const res = await this.request(config)
+    console.log(res);
     return res.data;
       // .then((res) => {
       //   console.log(res)
