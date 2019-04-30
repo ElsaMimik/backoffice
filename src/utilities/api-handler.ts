@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig, AxiosError } f
 import Cookies from 'js-cookie'
 import { requestSuccess, requestFail, responseSuccess, responseFail } from './error-handler'
 
-const baseURL = 'https://www.thef2e.com/api/tagList';
+// const baseURL = 'https://www.thef2e.com/api/tagList';
 // const baseURL = 'https://api.example.com';
 
 const successURL = 'https://www.mocky.io/v2/5c94c4423600001818941c8b?mocky-delay=300ms';
@@ -19,7 +19,7 @@ class HttpModel {
       let config = {
         baseURL: successURL,
         headers: {
-          'Authorization': `Bearer ${ Cookies.get('token') }`,
+          'Authorization': `Bearer ${Cookies.get('token')}`,
           'content-type': 'application/x-www-form-urlencoded',
         }
       };
