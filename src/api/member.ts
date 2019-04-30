@@ -8,7 +8,6 @@ export default {
         return <Model.IMemberResponse>(data);
     },
     async getMemberList(id: string): Promise<Model.IMemberResponse[]> {
-        console.log('test')
         let config = {
             url: '',
             method: 'get'
@@ -20,6 +19,6 @@ export default {
             { uuid: 'employee_01', name: 'Rourou', status: MemberStatus.E1 },
             { uuid: 'employee_02', name: 'Ellen', status: MemberStatus.E2 },
         ];
-        return <Model.IMemberResponse[]>(data);
+        return data;
     },
 }

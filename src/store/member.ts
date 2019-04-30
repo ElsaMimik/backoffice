@@ -17,8 +17,9 @@ const getters = {
 
 const actions = {
     getMember(context: ActionContextBasic, uuid: string) {
-        const data = MemberApi.getMemberList(uuid);
-        context.commit(SEARCH_MEMBER, data);
+        MemberApi.getMemberList(uuid).then((data) => {
+            context.commit(SEARCH_MEMBER, data);
+        });
     },
 }
 
