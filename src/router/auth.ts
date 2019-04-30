@@ -114,7 +114,11 @@ const component = [
     },
 ]
 
-// router.beforeEach 檢查
+/**
+ * 換頁檢查
+ * @author rourou
+ * @description router.beforeEach 檢查
+*/
 const checkPageAuth = async function (to: any, apiPaths: Array<string>) {
     let isAuth = false;
     await spiltPath(apiPaths).then(() => {

@@ -13,6 +13,11 @@ class HttpModel {
     // axios.defaults.baseURL = baseURL;
   }
 
+  /**
+   * axios API handler
+   * @author rourou
+   * @description 一律透過此method呼叫api
+  */
   async request<T>(config: AxiosRequestConfig): Promise<any> {
     let result;
     try {

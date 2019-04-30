@@ -1,8 +1,4 @@
-import * as store from '@/store/error'
-import Vue from 'vue';
-import { mapMutations } from 'vuex';
 import { IError } from '@/models/interfaces/error'
-
 
 const requestSuccess = (config: any) => {
     console.log('request success');
@@ -20,6 +16,11 @@ const responseSuccess = (response: any) => {
     return response;
 }
 
+/**
+ * axios error handler
+ * @author rourou
+ * @description 暫時存在localStorage
+ */
 const responseFail = (error: any) => {
     let msg = '';
     if (error.response.status === 504 || error.response.status === 404) {
@@ -36,7 +37,7 @@ const responseFail = (error: any) => {
             traceId: error.response.statusText,
 
         };
-    console.log(err)
+    localStorage.setItem('ErrorLog', JSON.stringify(err));
     return Promise.resolve(error);
 }
 
