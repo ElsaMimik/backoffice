@@ -14,8 +14,9 @@ export default {
             url: '',
             method: 'get'
         };
-        let response = await handler.callDoApi(config);
+        let response = await handler.callDoApi<string[]>(config);
         console.log(response)
+        console.log('123')
 
         const data: Model.IMemberResponse[] = [
             { uuid: 'employee_01', name: 'Rourou', status: MemberStatus.E1 },
