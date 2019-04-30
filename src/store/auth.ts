@@ -15,7 +15,7 @@ const getters = {
 
 const actions = {
     getApiPath(context: ActionContextBasic, uuid: string) {
-        console.log('apiPaths')
+        console.log('call api getApiPath')
         // TODO : apiPaths = call api
         const data = ['/member', '/account/modified/abnormal/approval'];
         // const data = new Array<string>();

@@ -76,7 +76,7 @@ export default class App extends Vue {
     this.getApiPath();
     const apiPaths = this.apiPaths;
     const menu = getMenu(apiPaths);
-    console.log(menu);
+    console.log('menu', menu);
   }
 }
 </script>
