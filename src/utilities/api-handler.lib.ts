@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios'
 import Cookies from 'js-cookie'
-import { requestSuccess, requestFail, responseSuccess, responseFail } from './error-handler'
+import { requestSuccess, requestFail, responseSuccess, responseFail } from './error-handler.lib'
 
 // const baseURL = 'https://www.thef2e.com/api/tagList';
 // const baseURL = 'https://api.example.com';

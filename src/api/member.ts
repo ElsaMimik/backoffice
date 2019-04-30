@@ -1,6 +1,6 @@
 import * as Model from '@/models/interfaces/member'
 import { MemberStatus } from '@/models/status/member'
-import Handler from '@/utilities/api-handler'
+import Handler from '@/utilities/api-handler.lib'
 
 export default {
     getMember(id: string): Model.IMemberResponse {
