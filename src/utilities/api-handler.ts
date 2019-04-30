@@ -21,23 +21,24 @@ class HttpModel {
   // }
 
   async callDoApi<T>(config: AxiosRequestConfig): Promise<T|IError> {
-    this.request(config)
-      .then((res) => {
-        console.log(res)
-        return res.data;
-        // return Promise.resolve(res.data);
-      })
-      .catch((err) => {
-        const error: IError = {
-          code: '',
-          message: err,
-          traceId: '',
-        };
-        return error;
-        // console.log(error)
-        // return Promise.resolve(error);
-      })
-      return Promise.reject();
+    const res = await this.request(config)
+    return res.data;
+      // .then((res) => {
+      //   console.log(res)
+      //   return res.data;
+      //   // return Promise.resolve(res.data);
+      // })
+      // .catch((err) => {
+      //   const error: IError = {
+      //     code: '',
+      //     message: err,
+      //     traceId: '',
+      //   };
+      //   return error;
+      //   // console.log(error)
+      //   // return Promise.resolve(error);
+      // })
+      // return Promise.reject();
   }
 
   async request(config: AxiosRequestConfig): Promise<AxiosResponse> {
