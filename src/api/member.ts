@@ -14,7 +14,7 @@ export default {
             url: '',
             method: 'get'
         };
-        let response = await handler.request(config);
+        let response = await handler.callDoApi(config);
         console.log(response)
 
         const data: Model.IMemberResponse[] = [

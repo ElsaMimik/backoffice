@@ -1,18 +1,31 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig, AxiosError } from 'axios'
 
-const baseURL = 'https://www.thef2e.com/api/tagList';
+// const baseURL = 'https://www.thef2e.com/api/tagList';
+const baseURL = 'https://api.example.com';
 
 class HttpModel {
+  constructor() {
+    axios.defaults.baseURL = baseURL;
+  }
 
-    constructor() {
-        axios.defaults.baseURL = baseURL;
-    }
+  async callDoApi(config: AxiosRequestConfig) {
+    this.request(config)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
-    async request(config: AxiosRequestConfig): Promise<AxiosResponse> {
-        let result: AxiosResponse = await axios.create().request(config);
-        console.log(result.status)
-        return result.data;
-    }
+  async request(config: AxiosRequestConfig): Promise<AxiosResponse> {
+    let result: AxiosResponse = await axios.create({
+      baseURL: baseURL,
+      // timeout: 1000,
+      // headers: { 'X-Custom-Header': 'foobar' }
+    }).request(config);
+    return result;
+  }
 }
 
 const model = new HttpModel();
