@@ -1,6 +1,6 @@
 import * as Model from '@/models/interfaces/member'
 import { MemberStatus } from '@/models/status/member'
-import handler from '@/utilities/api-handler'
+import Handler from '@/utilities/api-handler'
 
 export default {
     getMember(id: string): Model.IMemberResponse {
@@ -8,15 +8,13 @@ export default {
         return <Model.IMemberResponse>(data);
     },
     async getMemberList(id: string): Promise<Model.IMemberResponse[]> {
-
         console.log('test')
         let config = {
             url: '',
             method: 'get'
         };
-        let response = await handler.callDoApi<string[]>(config);
-        console.log(response)
-        console.log('123')
+        let response = await Handler.request<string[]>(config);
+        console.log(response);
 
         const data: Model.IMemberResponse[] = [
             { uuid: 'employee_01', name: 'Rourou', status: MemberStatus.E1 },

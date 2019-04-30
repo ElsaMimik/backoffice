@@ -83,7 +83,7 @@ export default class App extends Vue {
   @memberModule.State("apiPaths") apiPaths!: string[];
 
   mounted() {
-    this.getApiPath();
+    // this.getApiPath();
     const apiPaths = this.apiPaths;
     const menu = getMenu(apiPaths).then(menu => { console.log("menu", menu); });
   }
