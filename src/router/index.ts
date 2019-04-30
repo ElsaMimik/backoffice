@@ -31,8 +31,8 @@ let router = new Router({
 router.beforeEach((to, from, next) => {
   console.log(to)
   // TODO : check menu auth
-  let apiPaths = ['/member', '/account/modified/abnormal/approval'];
-  // let apiPaths = new Array<string>();
+  // let apiPaths = ['/member', '/account/modified/abnormal/approval'];
+  let apiPaths = new Array<string>();
   const isOk = checkPageAuth(to.name, apiPaths);
   console.log(isOk);
   next();
