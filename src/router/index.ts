@@ -1,7 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Vuex from 'vuex'
 import { checkPageAuth } from '@/router/auth';
+
 Vue.use(Router)
+Vue.use(Vuex)
 
 const routes = [
   {
@@ -29,13 +32,15 @@ let router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log(to)
-  // TODO : check menu auth
-  // let apiPaths = ['/member', '/account/modified/abnormal/approval'];
-  let apiPaths = new Array<string>();
-  const isOk = checkPageAuth(to.name, apiPaths);
-  console.log(isOk);
-  next();
+
+  let apiPaths = [];
+  if (router.app.$options.store) {
+    router.app.$options.store.dispatch('Auth/getApiPath');
+    apiPaths = router.app.$options.store.state.Auth.apiPaths;
+  }
+  if (checkPageAuth(to.name, apiPaths)) {
+    next();
+  } else { window.location.href = 'http://www.google.com'; }
 });
 
 export default router

@@ -64,6 +64,7 @@ import { checkPageAuth } from '@/router/auth'
 
 export default Vue.extend({
   mounted() {
+    // TODO : apiPaths = call api
     let apiPaths = ['/member', '/account/modified/abnormal/approval'];
     // let apiPaths = new Array<string>();
     const menu = getMenu(apiPaths);
