@@ -14,7 +14,7 @@ export default {
         };
         Handler.request<string[]>(config)
             .then(res => {
-                console.log(res);
+                console.log(res.data);
             }).catch(error => {
                 console.log(error.response);
             });

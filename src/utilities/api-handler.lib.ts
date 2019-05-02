@@ -20,15 +20,11 @@ class HttpModel {
    * @author rourou
    * @description 一律透過此method呼叫api
   */
-  async request<T>(config: AxiosRequestConfig): Promise<any> {
-    let result;
-    // try {
-    let cfg = {
-      baseURL: baseURL,
-      headers: {
-        'Authorization': `Bearer ${Cookies.get('token')}`,
-        'content-type': 'application/x-www-form-urlencoded',
-      }
+  async request<T>(cfg: AxiosRequestConfig): Promise<any> {
+    cfg.baseURL = successURL;
+    cfg.headers = {
+      'Authorization': `Bearer ${Cookies.get('token')}`,
+      'content-type': 'application/x-www-form-urlencoded',
     };
     let instance = axios.create();
     instance.interceptors.request.use(
@@ -37,12 +33,14 @@ class HttpModel {
     instance.interceptors.response.use(
       response => responseSuccess(response),
       error => responseFail(error));
-    result = await instance.request(cfg);
-    // }
-    // catch (err) {
-    //   console.log(err);
-    // }
-    return result;
+    let result;
+    try {
+      result = await instance.request(cfg);
+      return result;
+    }
+    catch (throwError) {
+      return Promise.reject(throwError);
+    }
   }
 }
 

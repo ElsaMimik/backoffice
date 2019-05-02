@@ -1,19 +1,7 @@
 import { IError } from '@/models/interfaces/error'
 import EventBus from '@/utilities/event-bus'
 
-const requestSuccess = (config: any) => {
-    console.log('request success');
-    return config;
-}
-
-const requestFail = (err: any) => {
-    // '请求超时!'
-    console.log('request error', err);
-    return Promise.reject(err);
-}
-
 const responseSuccess = (response: any) => {
-    console.log('response success');
     return response;
 }
 
@@ -24,21 +12,22 @@ const responseSuccess = (response: any) => {
  */
 const responseFail = (error: any) => {
     if (error.response) {
-        err =
-            {
-                code: error.response.status,
-                message: error.response.statusText,
-                traceId: '',
-
-            };
-    }
-    else {
+        err.code = error.response.status;
+        err.message = error.response.statusText;
+    } else {
         err.message = JSON.stringify(error);
     }
-    
-    // localStorage.setItem('ErrorLog', JSON.stringify(err));
     EventBus.$emit('api-error', err);
-    return Promise.resolve(error);
+    return Promise.reject(error);
+}
+
+const requestSuccess = (config: any) => {
+    return config;
+}
+
+const requestFail = (err: any) => {
+    // '请求超时!'
+    return Promise.reject(err);
 }
 
 export let err: IError =

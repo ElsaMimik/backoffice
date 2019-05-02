@@ -88,7 +88,6 @@ export default class App extends Vue {
   @errorModule.State("errorHistory") errorHistory!: IError[];
 
   mounted() {
-    // this.getApiPath();
     const apiPaths = this.apiPaths;
     const menu = getMenu(apiPaths).then(menu => { console.log("menu", menu); });
     EventBus.$on('api-error', (err: any) => {
