@@ -2,8 +2,8 @@ import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig, AxiosError } f
 import Cookies from 'js-cookie'
 import { requestSuccess, requestFail, responseSuccess, responseFail } from './error-handler.lib'
 
-// const baseURL = 'https://www.thef2e.com/api/tagList';
-const baseURL = 'https://api.example.com';
+const baseURL = 'https://www.thef2e.com/api/tagList';
+// const baseURL = 'https://api.example.com';
 
 const successURL = 'https://www.mocky.io/v2/5c94c4423600001818941c8b?mocky-delay=300ms';
 const failURL = 'https://www.mocky.io/v2/5c94c4793600001818941c8f?mocky-delay=300ms';
@@ -21,7 +21,7 @@ class HttpModel {
    * @description 一律透過此method呼叫api
   */
   async request<T>(cfg: AxiosRequestConfig): Promise<any> {
-    cfg.baseURL = successURL;
+    cfg.baseURL = testURL;
     cfg.headers = {
       'Authorization': `Bearer ${Cookies.get('token')}`,
       'content-type': 'application/x-www-form-urlencoded',

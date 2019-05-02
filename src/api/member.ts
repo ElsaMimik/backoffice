@@ -16,7 +16,7 @@ export default {
             .then(res => {
                 console.log(res.data);
             }).catch(error => {
-                console.log(error.response);
+                console.log(error);
             });
         const data: Model.IMemberResponse[] = [
             { uuid: 'employee_01', name: 'Rourou', status: MemberStatus.E1 },
