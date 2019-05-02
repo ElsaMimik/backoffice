@@ -12,9 +12,12 @@ export default {
             url: '',
             method: 'get'
         };
-        let response = await Handler.request<string[]>(config);
-        console.log(response);
-
+        Handler.request<string[]>(config)
+            .then(res => {
+                console.log(res);
+            }).catch(error => {
+                console.log(error.response);
+            });
         const data: Model.IMemberResponse[] = [
             { uuid: 'employee_01', name: 'Rourou', status: MemberStatus.E1 },
             { uuid: 'employee_02', name: 'Ellen', status: MemberStatus.E2 },

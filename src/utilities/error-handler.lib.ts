@@ -23,21 +23,19 @@ const responseSuccess = (response: any) => {
  * @description EventBus通知component
  */
 const responseFail = (error: any) => {
-    let msg = '';
-    if (error.response.status === 504 || error.response.status === 404) {
-        msg = '服务器被吃了⊙﹏⊙∥';
-    } else if (error.response.status === 403) {
-        msg = '权限不足,请联系管理员!';
-    } else {
-        msg = '未知错误!';
-    }
-    err =
-        {
-            code: error.response.status,
-            message: msg,
-            traceId: error.response.statusText,
+    if (error.response) {
+        err =
+            {
+                code: error.response.status,
+                message: error.response.statusText,
+                traceId: '',
 
-        };
+            };
+    }
+    else {
+        err.message = JSON.stringify(error);
+    }
+    
     // localStorage.setItem('ErrorLog', JSON.stringify(err));
     EventBus.$emit('api-error', err);
     return Promise.resolve(error);

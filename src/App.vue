@@ -74,20 +74,25 @@ import { Component } from "vue-property-decorator";
 import { State, Action, Getter, namespace } from "vuex-class";
 import { getMenu } from "@/router/menu";
 import { checkPageAuth } from "@/router/auth";
+import { IError } from '@/models/interfaces/error'
 import EventBus from '@/utilities/event-bus'
 
 const memberModule = namespace("Auth");
+const errorModule = namespace("Error");
 
 @Component
 export default class App extends Vue {
   @Action("Auth/getApiPath") private getApiPath!: any;
   @memberModule.State("apiPaths") apiPaths!: string[];
+  @Action("Error/getError") private getError!: any;
+  @errorModule.State("errorHistory") errorHistory!: IError[];
 
   mounted() {
     // this.getApiPath();
     const apiPaths = this.apiPaths;
     const menu = getMenu(apiPaths).then(menu => { console.log("menu", menu); });
     EventBus.$on('api-error', (err: any) => {
+      this.getError(err);
       console.log('api-error', err);
     });
   }

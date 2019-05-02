@@ -3,10 +3,12 @@ import Cookies from 'js-cookie'
 import { requestSuccess, requestFail, responseSuccess, responseFail } from './error-handler.lib'
 
 // const baseURL = 'https://www.thef2e.com/api/tagList';
-// const baseURL = 'https://api.example.com';
+const baseURL = 'https://api.example.com';
 
 const successURL = 'https://www.mocky.io/v2/5c94c4423600001818941c8b?mocky-delay=300ms';
 const failURL = 'https://www.mocky.io/v2/5c94c4793600001818941c8f?mocky-delay=300ms';
+
+const testURL = 'https://frontend-api.devel.starlordtech.com/api/v1/member/profile';
 
 class HttpModel {
   constructor() {
@@ -20,26 +22,26 @@ class HttpModel {
   */
   async request<T>(config: AxiosRequestConfig): Promise<any> {
     let result;
-    try {
-      let config = {
-        baseURL: failURL,
-        headers: {
-          'Authorization': `Bearer ${Cookies.get('token')}`,
-          'content-type': 'application/x-www-form-urlencoded',
-        }
-      };
-      let instance = axios.create();
-      instance.interceptors.request.use(
-        config => requestSuccess(config),
-        err => requestFail(err));
-      instance.interceptors.response.use(
-        response => responseSuccess(response),
-        error => responseFail(error));
-      result = await instance.request(config);
-    }
-    catch (err) {
-      console.log(err);
-    }
+    // try {
+    let cfg = {
+      baseURL: baseURL,
+      headers: {
+        'Authorization': `Bearer ${Cookies.get('token')}`,
+        'content-type': 'application/x-www-form-urlencoded',
+      }
+    };
+    let instance = axios.create();
+    instance.interceptors.request.use(
+      config => requestSuccess(config),
+      err => requestFail(err));
+    instance.interceptors.response.use(
+      response => responseSuccess(response),
+      error => responseFail(error));
+    result = await instance.request(cfg);
+    // }
+    // catch (err) {
+    //   console.log(err);
+    // }
     return result;
   }
 }
